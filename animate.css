@@ -1,0 +1,216 @@
+section{padding:10px 20px;}
+section:nth-of-type(2n){background-color:#eee;}
+/* ************************************* */
+/* Progress Bar Animation using CSS only */
+/*        Edit the Animation code        */
+ #wrapper{
+    width:200px;height:25px;
+    position:relative;
+    border:solid thin black;
+    border-radius: 30px;
+    position: relative;
+}
+/* Animated Bar */
+ #wrapper>div{
+    height:100%;
+    border-radius: 30px;
+    animation:loading 3s infinite;
+    }
+/* Animation */
+  @keyframes loading {
+    0% {top: 0px; background: yellow; width: 0px;}
+    100% {top: 0px; background: green; width: 200px;}
+    }
+ 
+/* **************************************** */
+/* Progress Circle Animation using CSS only */ 
+/*         Add jsFiddle CSS code here       */
+
+.wrapper {
+  width: 100px; /* Set the size of the progress bar */
+  height: 100px;
+  position: absolute; /* Enable clipping */
+  clip: rect(0px, 100px, 100px, 50px); /* Hide half of the progress bar */
+}
+/* Set the sizes of the elements that make up the progress bar */
+.circle {
+  width: 80px;
+  height: 80px;
+  border: 10px solid green;
+  border-radius: 50px;
+  position: absolute;
+  clip: rect(0px, 50px, 100px, 0px);
+}
+/* Using the data attributes for the animation selectors. */
+/* Base settings for all animated elements */
+div[data-anim~=base] {
+  -webkit-animation-iteration-count: 1;  /* Only run once */
+  -webkit-animation-fill-mode: forwards; /* Hold the last keyframe */
+  -webkit-animation-timing-function:linear; /* Linear animation */
+}
+
+.wrapper[data-anim~=wrapper] {
+  -webkit-animation-duration: 0.01s; /* Complete keyframes asap */
+  -webkit-animation-delay: 3s; /* Wait half of the animation */
+  -webkit-animation-name: close-wrapper; /* Keyframes name */
+}
+
+.circle[data-anim~=left] {
+  -webkit-animation-duration: 6s; /* Full animation time */
+  -webkit-animation-name: left-spin;
+}
+
+.circle[data-anim~=right] {
+  -webkit-animation-duration: 3s; /* Half animation time */
+  -webkit-animation-name: right-spin;
+}
+/* Rotate the right side of the progress bar from 0 to 180 degrees */
+@-webkit-keyframes right-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(180deg);
+  }
+}
+/* Rotate the left side of the progress bar from 0 to 360 degrees */
+@-webkit-keyframes left-spin {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+/* Set the wrapper clip to auto, effectively removing the clip */
+@-webkit-keyframes close-wrapper {
+  to {
+    clip: rect(auto, auto, auto, auto);
+  }
+}
+
+
+/* ***************************************** */
+/* Progress Circle Animation using JS/jQuery */ 
+/*         Add jsFiddle CSS code here        */
+
+*, *:after, *:before {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    -webkit-animation-fill-mode: both; /* Chrome, Safari, Opera */
+    animation-fill-mode: both
+}
+.pie {
+    background-color:darkorange;
+    margin:30px;
+    width:200px;
+    height:200px;
+    -moz-border-radius:100px;
+    -webkit-border-radius:100px;
+    border-radius:50%;
+    position:relative;
+    overflow:hidden;
+}
+.clip1 {
+    position:absolute;
+    top:0;
+    left:0;
+    width:200px;
+    height:200px;
+    clip:rect(0px, 200px, 200px, 100px);
+    box-shadow:0 2px 2px rgba(0,0,0,0.2) inset;
+    border-radius:50%;
+}
+.slice1 {
+    position:absolute;
+    width:200px;
+    height:200px;
+    clip:rect(0px, 100px, 200px, 0px);
+    -moz-border-radius:100px;
+    -webkit-border-radius:100px;
+    border-radius:100px;
+    background-color:limegreen;
+    border-color:#f7e5e1;
+    -moz-transform:rotate(0);
+    -webkit-transform:rotate(0);
+    -o-transform:rotate(0);
+    transform:rotate(0);
+    transition:all 0.3s linear 0s;
+}
+.clip2 {
+    position:absolute;
+    top:0;
+    left:0;
+    width:200px;
+    height:200px;
+    clip:rect(0, 100px, 200px, 0px);
+    box-shadow:0 2px 2px rgba(0,0,0,0.2) inset;
+    border-radius:50%;
+}
+.slice2 {
+    position:absolute;
+    width:200px;
+    height:200px;
+    clip:rect(0px, 200px, 200px, 100px);
+    -moz-border-radius:100px;
+    -webkit-border-radius:100px;
+    border-radius:100px;
+    background-color:limegreen;
+    border-color:#f7e5e1;
+    -moz-transform:rotate(0);
+    -webkit-transform:rotate(0);
+    -o-transform:rotate(0);
+    transform:rotate(0);
+    transition:all 0.3s linear 0.3s;
+}
+.status {
+    position:absolute;
+    height:30px;
+    width:100%;
+    line-height:60px;
+    text-align:center;
+    top:50%;
+    margin-top:-35px;
+    font-size:16px;
+    font-family:verdana;
+}
+
+.inner {
+    position:absolute;
+    height:80%;
+    width:80%;
+    line-height:60px;
+    text-align:center;
+    top:50%;
+    left:50%;
+    margin-top:-40%;
+    margin-left:-40%;
+    background:#fff;
+    border-radius:100%;
+    box-shadow:0 2px rgba(0,0,0,0.2), 0 -100px 50px -50px rgba(0,0,0,0.1) inset;
+}
+
+.outher {
+  position:absolute;
+  border-radius:50%;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  box-shadow:0 5px 5px rgba(0,0,0,0.3) inset;
+  //border:3px solid slateblue;
+}
+
+
+/* ****************************************** */
+/* Progress Circle Animation w/jQuery Library */ 
+/*         Add jsFiddle CSS code here         */
+#container {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+
